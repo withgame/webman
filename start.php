@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
-
+require_once __DIR__ . '/cmd.php';
 use Workerman\Worker;
 use Workerman\Protocols\Http;
 use Workerman\Connection\TcpConnection;
