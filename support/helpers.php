@@ -23,6 +23,8 @@ use Webman\Exception\ClassNotFoundException;
 //define('BASE_PATH', realpath(__DIR__ . '/../'));
 
 define('BASE_PATH', dirname(dirname(__FILE__)));
+define('WORK_PATH', str_replace('phar://', '', dirname(BASE_PATH)));
+
 /**
  * @return string
  */
@@ -44,7 +46,11 @@ function app_path()
  */
 function public_path()
 {
-    return BASE_PATH . DIRECTORY_SEPARATOR . 'public';
+    if (\strpos(BASE_PATH, 'phar://') === false) {
+        return BASE_PATH . DIRECTORY_SEPARATOR . 'public';
+    } else {
+        return WORK_PATH . DIRECTORY_SEPARATOR . 'public';
+    }
 }
 
 /**
@@ -60,7 +66,11 @@ function config_path()
  */
 function runtime_path()
 {
-    return BASE_PATH . DIRECTORY_SEPARATOR . 'runtime';
+    if (\strpos(BASE_PATH, 'phar://') === false) {
+        return BASE_PATH . DIRECTORY_SEPARATOR . 'runtime';
+    } else {
+        return WORK_PATH . DIRECTORY_SEPARATOR . 'runtime';
+    }
 }
 
 /**
@@ -222,7 +232,8 @@ function locale(string $locale)
  * @param $worker
  * @param $class
  */
-function worker_bind($worker, $class) {
+function worker_bind($worker, $class)
+{
     $callback_map = [
         'onConnect',
         'onMessage',
@@ -246,7 +257,8 @@ function worker_bind($worker, $class) {
 /**
  * @return int
  */
-function cpu_count() {
+function cpu_count()
+{
     if (strtolower(PHP_OS) === 'darwin') {
         $count = shell_exec('sysctl -n machdep.cpu.core_count');
     } else {
