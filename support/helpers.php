@@ -20,8 +20,9 @@ use Webman\App;
 use Webman\Config;
 use Webman\Exception\ClassNotFoundException;
 
-define('BASE_PATH', realpath(__DIR__ . '/../'));
+//define('BASE_PATH', realpath(__DIR__ . '/../'));
 
+define('BASE_PATH', dirname(dirname(__FILE__)));
 /**
  * @return string
  */

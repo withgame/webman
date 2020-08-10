@@ -5,6 +5,7 @@ foreach ($argv as $key => $value) {
     }
     switch ($value) {
         case '-v':
+        case '--version':
             try {
                 $p = new Phar(dirname(__FILE__));
                 foreach ($p->getMetadata() as $k => $v) {

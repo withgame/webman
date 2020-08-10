@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
-require_once __DIR__ . '/cmd.php';
+
 use Workerman\Worker;
 use Workerman\Protocols\Http;
 use Workerman\Connection\TcpConnection;
@@ -32,6 +32,7 @@ Worker::$onMasterReload = function (){
     }
 };
 
+Worker::$logFile                      = getcwd() . "/workerman.log";
 Worker::$pidFile                      = $config['pid_file'];
 Worker::$stdoutFile                   = $config['stdout_file'];
 TcpConnection::$defaultMaxPackageSize = $config['max_package_size'] ?? 10*1024*1024;
