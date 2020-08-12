@@ -27,7 +27,7 @@ jobs:
         with:
           repository: 'withgame/webman-framework'
           ref: 'withgame'
-          path: $GITHUB_WORKSPACE
+          path: ${{ github.workspace }}
 
       - name: Checkout Webman
         uses: actions/checkout@v2

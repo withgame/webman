@@ -25,7 +25,7 @@
   },
   "require": {
     "php": ">=7.2",
-    "workerman/webman-framework": "^1.0",
+    "workerman/webman-framework": "*@dev",
     "monolog/monolog": "^2.0",
     "vlucas/phpdotenv": "^4.1"
   },
@@ -41,5 +41,14 @@
     "post-autoload-dump": [
       "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
     ]
-  }
+  },
+  "repositories": [
+    {
+      "type": "path",
+      "url": "../webman-framework",
+      "options": {
+        "symlink": false
+      }
+    }
+  ]
 }
