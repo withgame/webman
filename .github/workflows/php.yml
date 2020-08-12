@@ -24,13 +24,21 @@ jobs:
 
       - name: Checkout WebmanFramework
         uses: actions/checkout@v2
+        working-directory: ../
         with:
           repository: 'withgame/webman-framework'
           ref: 'withgame'
-          path: ${{ github.workspace }}
+          path: ${{ github.workspace }}/webman-framework
+        run: |
+          pwd
+          ls -la
 
       - name: Checkout Webman
         uses: actions/checkout@v2
+        working-directory: ./
+        run: |
+          pwd
+          ls -la
 
       - name: Validate composer.json and composer.lock
         run: composer validate
