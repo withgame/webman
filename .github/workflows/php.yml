@@ -29,6 +29,7 @@ jobs:
           repository: 'withgame/webman-framework'
           ref: 'withgame'
           path: ${{ github.workspace }}/webman-framework
+      - name:
         run: |
           pwd
           ls -la
@@ -36,6 +37,8 @@ jobs:
       - name: Checkout Webman
         uses: actions/checkout@v2
         working-directory: ./
+
+      - name:
         run: |
           pwd
           ls -la
