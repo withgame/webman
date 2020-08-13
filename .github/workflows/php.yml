@@ -24,7 +24,6 @@ jobs:
 
       - name: Checkout WebmanFramework
         uses: actions/checkout@v2
-        working-directory: ../
         with:
           repository: 'withgame/webman-framework'
           ref: 'withgame'
@@ -36,7 +35,7 @@ jobs:
 
       - name: Checkout Webman
         uses: actions/checkout@v2
-        working-directory: ./
+        path: ${{ github.workspace }}/webman
 
       - name:
         run: |
@@ -54,9 +53,14 @@ jobs:
           key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-php-
+
       - name: Install dependencies
         if: steps.composer-cache.outputs.cache-hit != 'true'
         run: composer install --prefer-dist --no-progress --no-suggest
+        working-directory: ${{ github.workspace }}/webman
+
       - name: Build
         run: |
           make build
+          pwd
+          ls -la
