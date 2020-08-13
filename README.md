@@ -1,4 +1,4 @@
-# webman
+# webman ![PharBuild](https://github.com/withgame/webman/workflows/PHP%20Composer/badge.svg?branch=withgame)
 High performance HTTP Service Framework for PHP based on [Workerman](https://github.com/walkor/workerman).
 
 # 手册
