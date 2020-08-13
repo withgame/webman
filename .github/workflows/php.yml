@@ -29,20 +29,10 @@ jobs:
           ref: 'withgame'
           path: ${{github.workspace}}/webman-framework
 
-      - name: TestOutput1
-        run: |
-          pwd
-          ls -la
-
       - name: Checkout Webman
         uses: actions/checkout@v2
         with:
           path: ${{github.workspace}}/webman
-
-      - name: TestOutput2
-        run: |
-          pwd
-          ls -la
 
       - name: Validate composer.json and composer.lock
         run: composer validate
@@ -66,5 +56,3 @@ jobs:
         working-directory: ${{github.workspace}}/webman
         run: |
           make build
-          pwd
-          ls -la
