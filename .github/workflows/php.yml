@@ -28,7 +28,8 @@ jobs:
           repository: 'withgame/webman-framework'
           ref: 'withgame'
           path: ${{github.workspace}}/webman-framework
-      - name:
+
+      - name: TestOutput1
         run: |
           pwd
           ls -la
@@ -38,13 +39,14 @@ jobs:
         with:
           path: ${{github.workspace}}/webman
 
-      - name:
+      - name: TestOutput2
         run: |
           pwd
           ls -la
 
       - name: Validate composer.json and composer.lock
         run: composer validate
+        working-directory: ${{github.workspace}}/webman
 
       - name: Cache Composer packages
         id: composer-cache
