@@ -27,7 +27,7 @@ jobs:
         with:
           repository: 'withgame/webman-framework'
           ref: 'withgame'
-          path: webman-framework
+          path: ${{github.workspace}}/webman-framework
       - name:
         run: |
           pwd
@@ -35,7 +35,8 @@ jobs:
 
       - name: Checkout Webman
         uses: actions/checkout@v2
-        path: webman
+        with:
+          path: ${{github.workspace}}/webman
 
       - name:
         run: |
@@ -57,9 +58,10 @@ jobs:
       - name: Install dependencies
         if: steps.composer-cache.outputs.cache-hit != 'true'
         run: composer install --prefer-dist --no-progress --no-suggest
-        working-directory: webman
+        working-directory: ${{github.workspace}}/webman
 
       - name: Build
+        working-directory: ${{github.workspace}}/webman
         run: |
           make build
           pwd
